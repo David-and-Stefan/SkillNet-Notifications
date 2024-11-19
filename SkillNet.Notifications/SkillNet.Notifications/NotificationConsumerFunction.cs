@@ -14,11 +14,16 @@ namespace SkillNet.Notifications
         }
 
         [Function(nameof(NotificationConsumerFunction))]
-        public void Run([ServiceBusTrigger("notification", "Test-Sub", Connection = "ServiceBusConnection")] ServiceBusReceivedMessage message)
+        [SignalROutput(HubName = "notificationHub")]
+        public SignalRMessageAction Run(
+            [ServiceBusTrigger("notification", "Test-Sub", Connection = "ServiceBusConnection")] string message)
         {
-            _logger.LogInformation("Message ID: {id}", message.MessageId);
-            _logger.LogInformation("Message Body: {body}", message.Body);
-            _logger.LogInformation("Message Content-Type: {contentType}", message.ContentType);
+            _logger.LogInformation("Received message: {message}", message);
+
+            return new SignalRMessageAction("receiveNotification")
+            {
+                Arguments = new[] { message }   
+            };
         }
     }
 }
