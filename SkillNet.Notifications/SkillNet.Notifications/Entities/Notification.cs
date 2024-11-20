@@ -10,6 +10,9 @@ namespace SkillNet.Notifications.Entities
         [BsonElement("_id", Order = 1)]
         public string Id { get; set; } = ObjectId.GenerateNewId().ToString();
 
+        [BsonElement("title")]
+        public string Title { get; set; } = default!;
+
         [BsonElement("message")] 
         public string Message { get; set; } = default!;
 
