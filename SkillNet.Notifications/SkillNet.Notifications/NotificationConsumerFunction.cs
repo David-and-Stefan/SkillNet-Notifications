@@ -40,7 +40,7 @@ namespace SkillNet.Notifications
 
             return new SignalRMessageAction("receiveNotification")
             {
-                Arguments = new[] { message }   
+                Arguments = new[] { notification }   
             };
         }
     }
