@@ -25,7 +25,7 @@ namespace SkillNet.Notifications
         [Function("GetNotifications")]
         [Authorize]
         public async Task<HttpResponseData> GetNotificationsAsync(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "notifications")] HttpRequestData req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "notifications")] HttpRequestData req,
             FunctionContext context)
         {
             if (!TokenValidationMiddleware.IsAuthenticated(context, out var unathenticatedResponse))

@@ -26,7 +26,7 @@ namespace SkillNet.Notifications
         [Authorize]
 
         public async Task<HttpResponseData> DeleteNotificationAsync(
-            [HttpTrigger(AuthorizationLevel.Function, "delete", Route = "notifications/{id}")] HttpRequestData req, FunctionContext context,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "notifications/{id}")] HttpRequestData req, FunctionContext context,
             string id)
         {
             if (!TokenValidationMiddleware.IsAuthenticated(context, out var unathenticatedResponse))
